@@ -1,4 +1,5 @@
 import 'package:babble/widgets/custom_input_field.dart';
+import 'package:babble/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -36,7 +37,14 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _pageTitle(),
+              SizedBox(
+                height: _deviceHeight * 0.04,
+              ),
               _loginForm(),
+              SizedBox(
+                height: _deviceHeight * 0.05,
+              ),
+              _loginButton(),
             ],
           ),
         ),
@@ -84,6 +92,15 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _loginButton() {
+    return RoundedButton(
+      name: 'Login',
+      height: _deviceHeight * 0.065,
+      width: _deviceWidth * 0.65,
+      onPressed: () {},
     );
   }
 }
