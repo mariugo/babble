@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "58566837801",
+    "project_id": "babble-b303a",
+    "storage_bucket": "babble-b303a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58566837801:android:b63b3709bc822c02fdbe38",
+        "android_client_info": {
+          "package_name": "com.example.babble"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58566837801-mujb3780kdba9unfrai4fsmrdunjqlqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmYMbuo0KkArziW1uMSB3UkrgP6WJjb9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58566837801-mujb3780kdba9unfrai4fsmrdunjqlqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
