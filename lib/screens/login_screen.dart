@@ -1,3 +1,4 @@
+import 'package:babble/widgets/custom_input_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -66,7 +67,21 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [],
+          children: [
+            CustomInputField(
+              onSaved: (_value) {},
+              regEx:
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+              hintText: "Email",
+              obscureText: false,
+            ),
+            CustomInputField(
+              onSaved: (_value) {},
+              regEx: r".{8,}",
+              hintText: "Password",
+              obscureText: true,
+            ),
+          ],
         ),
       ),
     );
