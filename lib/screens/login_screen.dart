@@ -45,6 +45,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: _deviceHeight * 0.05,
               ),
               _loginButton(),
+              SizedBox(
+                height: _deviceHeight * 0.02,
+              ),
+              _register(),
             ],
           ),
         ),
@@ -101,6 +105,20 @@ class _LoginScreenState extends State<LoginScreen> {
       height: _deviceHeight * 0.065,
       width: _deviceWidth * 0.65,
       onPressed: () {},
+    );
+  }
+
+  Widget _register() {
+    return GestureDetector(
+      onTap: () {},
+      child: const SizedBox(
+        child: Text(
+          'Don\'t have an account?',
+          style: TextStyle(
+            color: Colors.blueAccent,
+          ),
+        ),
+      ),
     );
   }
 }
