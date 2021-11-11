@@ -15,4 +15,23 @@ class AuthenticationProvider extends ChangeNotifier {
     _navigationService = GetIt.instance.get<NavigationService>();
     _databaseService = GetIt.instance.get<DatabaseService>();
   }
+
+  Future<void> login(
+      BuildContext context, String _email, String _password) async {
+    try {
+      await _auth.signInWithEmailAndPassword(
+          email: _email, password: _password);
+      print(_auth.currentUser);
+    } on FirebaseAuthException {
+      const firebaseAuthSnackBar =
+          SnackBar(content: Text('Authentication error'));
+      ScaffoldMessenger.of(context).showSnackBar(firebaseAuthSnackBar);
+      print('Error loggin into Firebase');
+    } catch (error) {
+      final authException =
+          SnackBar(content: Text('Error: ' + error.toString()));
+      ScaffoldMessenger.of(context).showSnackBar(authException);
+      print(error);
+    }
+  }
 }
