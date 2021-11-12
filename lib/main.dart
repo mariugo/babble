@@ -1,11 +1,12 @@
-import 'package:babble/providers/authentication_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/splash_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/signup_screen.dart';
 import 'services/navigation_service.dart';
+import 'providers/authentication_provider.dart';
 
 void main() {
   runApp(
@@ -46,6 +47,7 @@ class MainApp extends StatelessWidget {
         routes: {
           '/login': (BuildContext _context) => const LoginScreen(),
           '/home': (BuildContext _context) => const HomeScreen(),
+          '/signup': (BuildContext _context) => const SignUpScreen(),
         },
       ),
     );
