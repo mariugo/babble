@@ -14,6 +14,14 @@ class AuthenticationProvider extends ChangeNotifier {
     _auth = FirebaseAuth.instance;
     _navigationService = GetIt.instance.get<NavigationService>();
     _databaseService = GetIt.instance.get<DatabaseService>();
+
+    _auth.authStateChanges().listen((_user) {
+      if (_user != null) {
+        print('Logged in');
+      } else {
+        print('Not logged in');
+      }
+    });
   }
 
   Future<void> login(
@@ -21,17 +29,14 @@ class AuthenticationProvider extends ChangeNotifier {
     try {
       await _auth.signInWithEmailAndPassword(
           email: _email, password: _password);
-      print(_auth.currentUser);
     } on FirebaseAuthException {
       const firebaseAuthSnackBar =
           SnackBar(content: Text('Authentication error'));
       ScaffoldMessenger.of(context).showSnackBar(firebaseAuthSnackBar);
-      print('Error loggin into Firebase');
     } catch (error) {
       final authException =
           SnackBar(content: Text('Error: ' + error.toString()));
       ScaffoldMessenger.of(context).showSnackBar(authException);
-      print(error);
     }
   }
 }
