@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _pageTitle() {
-    return Container(
+    return SizedBox(
       height: _deviceHeight * 0.1,
       child: const Text(
         'Babble',
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _loginForm() {
-    return Container(
+    return SizedBox(
       height: _deviceHeight * 0.2,
       child: Form(
         key: _loginFormKey,
@@ -123,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
       height: _deviceHeight * 0.065,
       width: _deviceWidth * 0.65,
       onPressed: () {
-        print(_loginFormKey.currentState);
         if (_loginFormKey.currentState!.validate()) {
           _loginFormKey.currentState!.save();
           _auth.login(context, _email!, _password!);

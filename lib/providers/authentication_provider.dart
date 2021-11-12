@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -17,7 +19,8 @@ class AuthenticationProvider extends ChangeNotifier {
 
     _auth.authStateChanges().listen((_user) {
       if (_user != null) {
-        print('Logged in');
+        _databaseService.updateUserLastActiveTime(_user.uid);
+        _databaseService.getUser(_user.uid);
       } else {
         print('Not logged in');
       }
