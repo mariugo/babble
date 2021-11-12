@@ -34,6 +34,7 @@ class AuthenticationProvider extends ChangeNotifier {
               'image': _userData['image'],
             },
           );
+          print(user.toMap());
         });
       } else {
         print('Not logged in');
