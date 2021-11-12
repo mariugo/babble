@@ -1,12 +1,10 @@
-// ignore_for_file: avoid_print
-
-import 'package:babble/models/chat_user.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
 import '/services/database_service.dart';
 import '/services/navigation_service.dart';
+import '/models/chat_user.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
   late final FirebaseAuth _auth;
@@ -34,10 +32,10 @@ class AuthenticationProvider extends ChangeNotifier {
               'image': _userData['image'],
             },
           );
-          print(user.toMap());
+          _navigationService.removeAndNavigateToRoute('/home');
         });
       } else {
-        print('Not logged in');
+        _navigationService.removeAndNavigateToRoute('/login');
       }
     });
   }
