@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: _deviceHeight * 0.02,
             ),
-            _register(),
+            _signUp(),
           ],
         ),
       ),
@@ -131,9 +131,9 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _register() {
+  Widget _signUp() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => _navigation.navigateToRoute('/signup'),
       child: const SizedBox(
         child: Text(
           'Don\'t have an account?',
