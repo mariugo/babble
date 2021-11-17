@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
       onPressed: () {
         if (_loginFormKey.currentState!.validate()) {
           _loginFormKey.currentState!.save();
-          _auth.login(context, _email!, _password!);
+          _auth.login(_email!, _password!);
         }
       },
     );

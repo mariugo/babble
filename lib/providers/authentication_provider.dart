@@ -24,7 +24,7 @@ class AuthenticationProvider extends ChangeNotifier {
         _databaseService.updateUserLastActiveTime(_user.uid);
         _databaseService.getUser(_user.uid).then((_snapshot) {
           Map<String, dynamic> _userData =
-              _snapshot.data()! as Map<String, dynamic>;
+              _snapshot.data() as Map<String, dynamic>;
           user = ChatUser.fromJson(
             {
               'uid': _user.uid,
@@ -42,19 +42,39 @@ class AuthenticationProvider extends ChangeNotifier {
     });
   }
 
-  Future<void> login(
-      BuildContext context, String _email, String _password) async {
+  Future<void> login(String _email, String _password) async {
     try {
       await _auth.signInWithEmailAndPassword(
           email: _email, password: _password);
     } on FirebaseAuthException {
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<String?> signUp(
+      BuildContext context, String _email, String _password) async {
+    try {
+      UserCredential _userCredential = await _auth
+          .createUserWithEmailAndPassword(email: _email, password: _password);
+      return _userCredential.user!.uid;
+    } on FirebaseAuthException {
       const firebaseAuthSnackBar =
-          SnackBar(content: Text('Authentication error'));
+          SnackBar(content: Text('Error registering user'));
       ScaffoldMessenger.of(context).showSnackBar(firebaseAuthSnackBar);
     } catch (error) {
       final authException =
           SnackBar(content: Text('Error: ' + error.toString()));
       ScaffoldMessenger.of(context).showSnackBar(authException);
+    }
+    return null;
+  }
+
+  Future<void> logOut() async {
+    try {
+      _auth.signOut();
+    } catch (error) {
+      print(error);
     }
   }
 }

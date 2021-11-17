@@ -56,20 +56,3 @@ class RoundedImageFile extends StatelessWidget {
     );
   }
 }
-
-
-//  @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: size,
-//       width: size,
-//       decoration: const BoxDecoration(
-//         color: Colors.black,
-//       ),
-//       child: Image.file(
-//         image,
-//         fit: BoxFit.cover,
-//       ),
-//     );
-//   }
-// }
