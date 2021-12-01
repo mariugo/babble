@@ -27,11 +27,11 @@ class CloudStorageService {
   }
 
   Future<String?> saveChatImageToStorage(
-      String _chatID, String uid, File _file) async {
-    final imageExtension = path.extension(_file.path);
+      String _chatID, String _uid, File _file) async {
+    final _imageExtension = path.extension(_file.path);
     try {
       Reference _ref = _firebaseStorage.ref().child(
-          'images/chat/$_chatID/${uid}_${Timestamp.now().microsecondsSinceEpoch}.$imageExtension');
+          'images/chat/$_chatID/${_uid}_${Timestamp.now().microsecondsSinceEpoch}.$_imageExtension');
       UploadTask _task = _ref.putFile(_file);
       return await _task.then((_result) => _result.ref.getDownloadURL());
     } catch (e) {
