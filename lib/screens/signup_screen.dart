@@ -25,7 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late AuthenticationProvider _auth;
   late DatabaseService _db;
   late CloudStorageService _cloudStorage;
-  late NavigationService _navigationService;
+  //late NavigationService _navigationService;
   File? _profileImage;
   String? _name;
   String? _email;
@@ -37,15 +37,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
+    _auth = Provider.of<AuthenticationProvider>(context);
+    _db = GetIt.instance.get<DatabaseService>();
+    _cloudStorage = GetIt.instance<CloudStorageService>();
+    //_navigationService = GetIt.instance<NavigationService>();
     return _buildUI();
   }
 
   Widget _buildUI() {
-    _auth = Provider.of<AuthenticationProvider>(context);
-    _db = GetIt.instance.get<DatabaseService>();
-    _cloudStorage = GetIt.instance<CloudStorageService>();
-    _navigationService = GetIt.instance<NavigationService>();
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -159,12 +158,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       onPressed: () async {
         if (_registerFormKey.currentState!.validate() &&
             _profileImage != null) {
+          const CircularProgressIndicator();
           _registerFormKey.currentState!.save();
           String? _uid = await _auth.signUp(context, _email!, _password!);
           String? _imageUrl =
               await _cloudStorage.saveUserImageToStorage(_uid!, _profileImage!);
           await _db.createUser(_uid, _email!, _name!, _imageUrl!);
-          //TODO CIRCULAR PROGRESS INDICATOR
           await _auth.logOut();
           await _auth.login(_email!, _password!);
         }

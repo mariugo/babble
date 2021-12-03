@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'chats_screen.dart';
+import 'users_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -9,12 +12,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentPage = 0;
+
   final List<Widget> _pages = [
-    Container(
-      color: Colors.red,
-    ),
-    Container(color: Colors.green),
+    const ChatsScreen(),
+    const UsersScreen(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return _buildUI();
@@ -22,21 +25,28 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildUI() {
     return Scaffold(
+      body: _pages[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentPage,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.chat_bubble,
-            ),
-            label: 'Chats',
-          ),
-        ],
         onTap: (_index) {
           setState(() {
             _currentPage = _index;
           });
         },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.chat_bubble_sharp,
+            ),
+            label: 'Chats',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.supervised_user_circle_sharp,
+            ),
+            label: 'Users',
+          ),
+        ],
       ),
     );
   }
