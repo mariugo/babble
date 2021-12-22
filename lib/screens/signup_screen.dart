@@ -10,7 +10,6 @@ import '/services/cloud_storage_service.dart';
 import '/widgets/custom_input_field.dart';
 import '/widgets/rounded_button.dart';
 import '/providers/authentication_provider.dart';
-import 'package:babble/services/navigation_service.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
